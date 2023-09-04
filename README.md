@@ -4,10 +4,10 @@ Please read this before accesing our final project. Our project is about weather
 
 ## Features
 
-###City-based Weather Information: 
+### City-based Weather Information: 
 Upon entering the name of a city, users receive real-time data about the current temperature, humidity, wind speed, and general weather conditions for that location.
 
-###Interactive City Map: 
+### Interactive City Map: 
 An integrated map displays the geographic location of the entered city, providing visual context to users.
 
 Clothing Recommendations: The app suggests appropriate clothing items based on the current weather conditions. For instance, it might recommend a winter coat and gloves during cold conditions or a t-shirt and shorts during warmer weather.

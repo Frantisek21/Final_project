@@ -2,11 +2,13 @@
 
 Please read this before accesing our final project. Our project is about weather and health for a better day. The Weather Recommendation App is a web-based application designed to provide users with real-time weather information for a specified city. It goes beyond presenting basic weather metrics, offering personalized clothing and activity recommendations based on the current and forecasted weather conditions.
 
-#Features
+## Features
 
-City-based Weather Information: Upon entering the name of a city, users receive real-time data about the current temperature, humidity, wind speed, and general weather conditions for that location.
+###City-based Weather Information: 
+Upon entering the name of a city, users receive real-time data about the current temperature, humidity, wind speed, and general weather conditions for that location.
 
-Interactive City Map: An integrated map displays the geographic location of the entered city, providing visual context to users.
+###Interactive City Map: 
+An integrated map displays the geographic location of the entered city, providing visual context to users.
 
 Clothing Recommendations: The app suggests appropriate clothing items based on the current weather conditions. For instance, it might recommend a winter coat and gloves during cold conditions or a t-shirt and shorts during warmer weather.
 

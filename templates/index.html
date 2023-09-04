@@ -1,0 +1,85 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<link rel="stylesheet" href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css" />
+<script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js"></script>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Weather App</title>
+</head>
+<body>
+    <h1>Weather app for healthy life!</h1>
+    <form action="/get_weather" method="post">
+        <label for="city">City:</label><br>
+        <input type="text" id="city" name="city"><br><br>
+        <input type="submit" value="Submit">
+    </form>
+
+    {% if error %}
+    <p style="color:red;">{{ error }}</p>
+    {% endif %}
+
+    {% if latitude and longitude %}
+    <h2>City map for your orientation:</h2> 
+    <div id="map" style="width: 600px; height: 400px;"></div>
+    <script>
+        {% if latitude and longitude %}
+            var map = L.map('map').setView([{{ latitude }}, {{ longitude }}], 13);
+            L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png').addTo(map);
+        {% endif %}
+    </script>
+    {% endif %}
+
+    {% if temperature %}
+    <h2>Weather Details:</h2>
+    <p>Temperature: {{ temperature }}°C</p>
+    <p>Humidity: {{ humidity }}%</p>
+    <p>Wind Speed: {{ wind_speed }} m/s</p>
+    <p>Condition: {{ weather_condition }}</p>
+
+    {% if daily_forecasts %}
+
+<h2>3-Day Weather Forecast:</h2>
+<table border="1">
+    <thead>
+        <tr>
+            <th>Date</th>
+            <th>Average Temperature (°C)</th>
+            <th>Weather Condition</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for date, forecast in daily_forecasts.items() %}
+        <tr>
+            <td>{{ date }}</td>
+            <td>{{ forecast.average_temperature|round(2) }}</td>
+            <td>{{ forecast.condition }}</td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+{% endif %}
+
+    <h2>Clothing Recommendations:</h2>
+    <ul>
+        {% for item in clothing %}
+        <li>{{ item }}</li>
+        {% endfor %}
+    </ul>
+
+    <h2>Activity Recommendations:</h2>
+    <ul>
+        {% for activity in activities %}
+        <li>{{ activity }}</li>
+        {% endfor %}
+    </ul>
+
+    {% if wikipedia_url %}
+    <h2>Learn more about {{ city }}:</h2>
+    <a href="{{ wikipedia_url }}" target="_blank">Wikipedia Link</a>
+    {% endif %}
+
+    {% endif %}
+</body>
+</html>

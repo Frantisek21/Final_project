@@ -4,7 +4,7 @@ import requests
 from geopy.geocoders import Nominatim
 
 app = Flask(__name__)
-geolocator = Nominatim(user_agent="YourAppName_WeatherApp")
+geolocator = Nominatim(user_agent="Project_WeatherApp")
 
 def get_clothing_recommendations(temperature, weather_condition):
     clothing = []
@@ -50,7 +50,7 @@ def get_activity_recommendations(temperature, weather_condition):
     if weather_condition == "Snow" and -5 <= temperature < 0:
         activities.append("Snowball Fight")
     if not activities:
-        activities.append("Yoga")  # A default activity suitable for any weather
+        activities.append("Yoga") 
 
     return activities
 
@@ -68,7 +68,7 @@ def get_weather():
     url = f"http://api.openweathermap.org/data/2.5/weather?q={city}&appid={api_key}&units=metric"
     response = requests.get(url)
     
-    # Check if the city exists or not based on the response status code
+    # error message
     if response.status_code == 404:
         return render_template('index.html', error="This city does not exist. Please insert another name.")
 
@@ -79,7 +79,7 @@ def get_weather():
     wind_speed = data["wind"]["speed"]
     weather_condition = data["weather"][0]["main"]
 
-    # Get latitude and longitude of the city
+    # Geocoding
     location = geolocator.geocode(city)
     latitude = location.latitude
     longitude = location.longitude
@@ -90,12 +90,11 @@ def get_weather():
     #Wikipedia URL
     wikipedia_url = get_wikipedia_url(city)
 
-    # Fetch the 5-day/3-hour forecast data
+    # 3 days forecast
     forecast_url = f"http://api.openweathermap.org/data/2.5/forecast?q={city}&appid={api_key}&units=metric"
     forecast_response = requests.get(forecast_url)
     forecast_data = forecast_response.json()
 
-    # Extract and process the forecast data for the next three days
     daily_forecasts = {}
 
     for entry in forecast_data['list']:
@@ -124,7 +123,7 @@ def get_weather():
             'condition': prevalent_condition
         }
 
-    # Render the template with the forecast data
+    # put in the forecast data
     return render_template('index.html', temperature=temperature, humidity=humidity, wind_speed=wind_speed,
                            weather_condition=weather_condition, clothing=clothing, activities=activities,
                            wikipedia_url=wikipedia_url, latitude=latitude, longitude=longitude, daily_forecasts=daily_forecasts)
@@ -197,6 +196,6 @@ def get_activity_recommendations(temperature, weather_condition):
         activities.extend(["Jogging", "Cycling", "Street Photography"])
     
     if not activities:
-        activities.append("Yoga")  # A default activity suitable for any weather
+        activities.append("Yoga") 
 
     return activities

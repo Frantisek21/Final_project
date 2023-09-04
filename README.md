@@ -13,14 +13,14 @@ An integrated map displays the geographic location of the entered city, providin
 ### Clothing Recommendations: 
 The app suggests appropriate clothing items based on the current weather conditions. This way will our user stay healthy during the whole year!
 
-###Activity Recommendations: 
+### Activity Recommendations: 
 In addition to clothing suggestions, the app proposes activities that are suitable for the current weather. 
 
-###Three-Day Weather Forecast: 
+### Three-Day Weather Forecast: 
 Users are not limited to just current weather data. The app provides an average temperature and weather conditions for the upcoming three days, assisting users in planning ahead.
 
-###Educational Link: 
+### Educational Link: 
 A Wikipedia link related to the entered city is provided, allowing users to learn more about their location of interest.
 
-##Details:
+## Details:
 The application is developed using Flask, a micro web framework written in Python. Real-time weather data and forecasts are fetched from the OpenWeatherMap API. City geolocation details are obtained using the Geopy library's Nominatim geocoder. Additionally, the Wikipedia API is used to retrieve relevant city-based Wikipedia links. The user interface is built using HTML templates, with interactive map functionality provided by the Leaflet JavaScript library.
